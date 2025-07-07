@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
+import '../services/location.dart';
 
 class LoadingScreen extends StatefulWidget {
   const LoadingScreen({super.key});
@@ -17,39 +17,10 @@ class _LoadingScreenState extends State<LoadingScreen> {
   }
 
   void getLocation() async {
-    try {
-      bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
-      if (!serviceEnabled) {
-        print('Enable your location, please!');
-        return;
-      }
+    Location location = Location();
 
-      LocationPermission permission = await Geolocator.checkPermission();
-
-      if (permission == LocationPermission.denied) {
-        permission = await Geolocator.requestPermission();
-        if (permission == LocationPermission.denied) {
-          return;
-        }
-      }
-
-      if (permission == LocationPermission.deniedForever) {
-        print('Location is disabled forever! Try to fix it in your iOS settings!');
-        return;
-      }
-
-      if (permission == LocationPermission.always || permission == LocationPermission.whileInUse) {
-        final LocationSettings locationSettings = LocationSettings(
-          accuracy: LocationAccuracy.high,
-          distanceFilter: 100,
-        );
-
-        Position position = await Geolocator.getCurrentPosition(locationSettings: locationSettings);
-        print(position);
-      }
-    } catch (e) {
-      print(e);
-    }
+    await location.getCurrentLocation();
+    print('Latitude: ${location.latitude}, \n Longitude: ${location.longitude}');
   }
 
   @override
