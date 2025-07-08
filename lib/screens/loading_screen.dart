@@ -15,9 +15,6 @@ class LoadingScreen extends StatefulWidget {
 class _LoadingScreenState extends State<LoadingScreen> {
   final String _apiKey = dotenv.env['OPENWEATHER_API_KEY'] ?? '';
 
-  double? longitude;
-  double? latitude;
-
   @override
   void initState() {
     super.initState();
@@ -28,24 +25,27 @@ class _LoadingScreenState extends State<LoadingScreen> {
     Location location = Location();
 
     await location.getCurrentLocation();
-    latitude = location.latitude;
-    longitude = location.longitude;
 
-    NetworkHelper networkHelper = NetworkHelper(url: 'https://samples.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&appid=$_apiKey');
-
-    var weatherData = await networkHelper.getData();
-
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => LocationScreen()
-      )
+    final uri = Uri.https(
+      'api.openweathermap.org',
+      '/data/2.5/weather',
+      {
+        'lat': location.latitude.toString(),
+        'lon': location.longitude.toString(),
+        'appid': _apiKey,
+        'units': 'metric',
+      },
     );
-  }
 
-  void getData() async {
-      //double temp = decodedData['main']['temp'];
-      //int id = decodedData['weather'][0]['id'];
-      //String city = decodedData['name'];
+    var weatherData = await NetworkHelper(url: uri.toString()).getData();
+
+    if (weatherData != null) {
+      Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => LocationScreen(locationWeather: weatherData)
+          )
+      );
+    }
   }
 
   @override
