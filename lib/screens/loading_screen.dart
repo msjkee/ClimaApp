@@ -1,7 +1,9 @@
+import 'package:clima_flutter/screens/location_screen.dart';
 import 'package:flutter/material.dart';
 import '../services/location.dart';
 import '../services/networking.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import '../utilities/constants.dart';
 
 class LoadingScreen extends StatefulWidget {
   const LoadingScreen({super.key});
@@ -32,6 +34,12 @@ class _LoadingScreenState extends State<LoadingScreen> {
     NetworkHelper networkHelper = NetworkHelper(url: 'https://samples.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&appid=$_apiKey');
 
     var weatherData = await networkHelper.getData();
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => LocationScreen()
+      )
+    );
   }
 
   void getData() async {
@@ -43,7 +51,9 @@ class _LoadingScreenState extends State<LoadingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
+      body: Center(
+        child: spinKit
+      )
     );
   }
 }
