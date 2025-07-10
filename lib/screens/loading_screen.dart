@@ -1,8 +1,6 @@
 import 'package:clima_flutter/screens/location_screen.dart';
+import 'package:clima_flutter/services/weather.dart';
 import 'package:flutter/material.dart';
-import '../services/location.dart';
-import '../services/networking.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import '../utilities/constants.dart';
 
 class LoadingScreen extends StatefulWidget {
@@ -13,7 +11,6 @@ class LoadingScreen extends StatefulWidget {
 }
 
 class _LoadingScreenState extends State<LoadingScreen> {
-  final String _apiKey = dotenv.env['OPENWEATHER_API_KEY'] ?? '';
 
   @override
   void initState() {
@@ -22,22 +19,8 @@ class _LoadingScreenState extends State<LoadingScreen> {
   }
 
   void getLocationData() async {
-    Location location = Location();
-
-    await location.getCurrentLocation();
-
-    final uri = Uri.https(
-      'api.openweathermap.org',
-      '/data/2.5/weather',
-      {
-        'lat': location.latitude.toString(),
-        'lon': location.longitude.toString(),
-        'appid': _apiKey,
-        'units': 'metric',
-      },
-    );
-
-    var weatherData = await NetworkHelper(url: uri.toString()).getData();
+    WeatherModel weatherModel = WeatherModel();
+    var weatherData = await weatherModel.getLocationWeather();
 
     if (weatherData != null) {
       Navigator.push(
