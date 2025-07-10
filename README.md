@@ -12,9 +12,8 @@ A simple and elegant weather app built with Flutter. It fetches current weather 
 
 ## 📸 Screenshots
 
-<img width="363" height="753" alt="image" src="https://github.com/user-attachments/assets/6c016729-ff79-4a91-a2db-63c6ce846ffa" />
-<img width="361" height="752" alt="image" src="https://github.com/user-attachments/assets/1181174e-32c1-4f62-8ece-8e39eab16f8c" />
-
+<img width="363" height="753" alt="Location Weather Screen" src="images/location_screen.png" />
+<img width="361" height="752" alt="City Search Screen" src="images/city_screen.png" />
 
 ## 🛠️ Technologies
 
@@ -70,11 +69,33 @@ lib/
 │   ├── location_screen.dart
 │   └── city_screen.dart
 ├── services/
-│   ├── location.dart  # Geolocation logic
+│   ├── location.dart   # Geolocation logic
 │   └── networking.dart # HTTP & JSON parsing
 └── utilities/
-    └── constants.dart # Styling constants
+    └── constants.dart  # Styling constants
 ```
+
+## 📘 What I Learned & Next Steps
+
+**What I Learned:**
+
+* Asynchronous programming with `Future`, `async`/`await`, and `Future.wait`
+* Handling HTTP requests and JSON parsing using `http` and `dart:convert`
+* Reading and securing API keys with `flutter_dotenv` and `.env`
+* Obtaining device location and permissions with `geolocator`
+* Navigating between screens using `Navigator.push`/`pop` and named routes
+* Managing widget state and lifecycle (`initState`, `setState`, `didUpdateWidget`, `dispose`)
+* Building responsive UI with Flutter widgets (`TextField`, `Container`, `SafeArea`, etc.)
+* Error handling using `try`/`catch` and null-aware operators (`?.`, `??`)
+
+**Next Steps & Topics to Review:**
+
+* Deepen understanding of state management (Provider, Riverpod)
+* Explore form validation and `TextFormField` inside `Form`
+* Learn advanced navigation patterns (Navigator 2.0 / Router API)
+* Improve error reporting and user feedback (dialogs, snackbars)
+* Optimize performance (rebuilds, const constructors)
+* Write unit and widget tests for services and UI
 
 ## 📄 License
 
@@ -82,5 +103,4 @@ This project is licensed under the MIT License.
 
 ---
 
-Made with ❤️ by [msjkee](https://github.com/msjkee)
-
+Made with ❤️ by [msjkee](https://github.com/msjkee) ☁️🌡️
