@@ -56,4 +56,19 @@ class WeatherModel {
     var weatherData = await NetworkHelper(url: uri.toString()).getData();
     return weatherData;
   }
+
+  Future<dynamic> getCityWeather(String cityName) async {
+    final uri = Uri.https(
+      'api.openweathermap.org',
+      '/data/2.5/weather',
+      {
+        'q': cityName,
+        'appid': _apiKey,
+        'units': 'metric',
+      },
+    );
+
+    var weatherData = await NetworkHelper(url: uri.toString()).getData();
+    return weatherData;
+  }
 }
