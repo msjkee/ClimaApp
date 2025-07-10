@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../utilities/constants.dart';
 
 class CityScreen extends StatefulWidget {
   const CityScreen({super.key});
@@ -14,7 +15,7 @@ class _CityScreenState extends State<CityScreen> {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-              image: AssetImage('city_background.jpg'),
+              image: AssetImage('images/city_background.jpg'),
               fit: BoxFit.cover
           )
         ),
@@ -22,7 +23,31 @@ class _CityScreenState extends State<CityScreen> {
         child: SafeArea(
             child: Column(
               children: <Widget> [
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: Icon(
+                        Icons.arrow_back_ios,
+                        size: 50.0
+                      )
+                  )
+                ),
+                Container(
+                  padding: EdgeInsets.all(20.0),
+                  child: null
+                ),
+                TextButton(
+                    onPressed: () {
 
+                    },
+                    child: Text(
+                      'Get Weather',
+                      style: kButtonTextStyle,
+                    )
+                )
               ],
             )
         )
