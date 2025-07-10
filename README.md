@@ -12,8 +12,9 @@ A simple and elegant weather app built with Flutter. It fetches current weather 
 
 ## 📸 Screenshots
 
-<img width="363" height="753" alt="Location Weather Screen" src="images/location_screen.png" />
-<img width="361" height="752" alt="City Search Screen" src="images/city_screen.png" />
+<img width="363" height="750" alt="image" src="https://github.com/user-attachments/assets/801757f1-4c98-470c-aa1c-dba5d8d0aa16" />
+<img width="362" height="746" alt="image" src="https://github.com/user-attachments/assets/68628127-251c-4606-9fe4-6aedcbd14f94" />
+
 
 ## 🛠️ Technologies
 
